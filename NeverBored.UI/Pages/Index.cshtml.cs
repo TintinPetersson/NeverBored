@@ -50,6 +50,7 @@ namespace NeverBored.UI.Pages
             if (ModelState.IsValid)
             {
                 stringFavorites = JsonConvert.SerializeObject(ActivityManager.Activities);
+
                 HttpContext.Session.SetString("Favorites", stringFavorites);
 
                 return Redirect("/ShowFavorites");
