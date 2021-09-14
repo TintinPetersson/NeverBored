@@ -9,6 +9,8 @@ namespace NeverBored.API
 {
     public class ActivityManager
     {
+        public static List<ActivityModel> Activities { get; set; } = new List<ActivityModel>();
+
         public async Task<ActivityModel> GetActivity()
         {
             ActivityModel activity = new ActivityModel();

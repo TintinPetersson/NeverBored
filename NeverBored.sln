@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverBored.UI", "NeverBored.UI\NeverBored.UI.csproj", "{FA786F0C-1BA2-44ED-A41D-CE5E6A6F7F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeverBored.UI", "NeverBored.UI\NeverBored.UI.csproj", "{FA786F0C-1BA2-44ED-A41D-CE5E6A6F7F0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverBored.Data", "NeverBored.Data\NeverBored.Data.csproj", "{59CB0B97-E6A0-43E5-A9E8-CCFC7A5BC8C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeverBored.Data", "NeverBored.Data\NeverBored.Data.csproj", "{59CB0B97-E6A0-43E5-A9E8-CCFC7A5BC8C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverBored.API", "NeverBored.API\NeverBored.API.csproj", "{6D565293-88AF-40B4-AECC-06892F6503F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeverBored.API", "NeverBored.API\NeverBored.API.csproj", "{6D565293-88AF-40B4-AECC-06892F6503F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

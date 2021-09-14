@@ -4,7 +4,25 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    @Model.Activity.Activity
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">People needed: @Model.Activity.Participants</li>
+                    <li class="list-group-item">Type of activity: @Model.Activity.Type</li>
+                </ul>
+            </div>
+            <button class="btn btn-light pt-2 mt-2" style="width:150px" onClick="window.location.reload();">Refresh</button>
+            <form method="post">
+                <input class="btn btn-light pt-2 mt-2" style="width: 150px" type="submit" value="Add" />
+            </form>
+        </div>
+    </div>
 </div>
+
+

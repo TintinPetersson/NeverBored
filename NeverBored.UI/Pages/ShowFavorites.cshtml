@@ -1,0 +1,17 @@
+﻿@page
+@model NeverBored.UI.Pages.ShowFavoritesModel
+@{
+}
+<div class="container text-light">
+    <div class="row justify-content-center text-light">
+        <div class="col-4 text-light">
+            @if (NeverBored.API.ActivityManager.Activities != null)
+            {
+                @foreach (var activity in NeverBored.API.ActivityManager.Activities)
+                {
+                    <p class="text-light">@activity.Activity</p>
+                }
+            }
+        </div>
+    </div>
+</div>

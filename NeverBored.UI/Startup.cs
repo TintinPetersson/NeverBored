@@ -24,6 +24,11 @@ namespace NeverBored.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddSession(options => {
+                options.Cookie.Name = "Favorites";
+                options.Cookie.MaxAge = TimeSpan.FromDays(2);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +51,8 @@ namespace NeverBored.UI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
