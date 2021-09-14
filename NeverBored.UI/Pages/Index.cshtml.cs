@@ -27,17 +27,20 @@ namespace NeverBored.UI.Pages
                 ActivityManager.Activities = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
             }
 
-
             //----Get Activity from API
 
-            ActivityManager jokeManager = new ActivityManager();
+            ActivityManager activityManager = new ActivityManager();
 
-            Activity = await jokeManager.GetActivity();
+            Activity = await activityManager.GetActivity();
+
 
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost(string id)
         {
+            ActivityManager activityManager = new ActivityManager();
+            Activity = await activityManager.SearchActivity(id);
+
             ActivityManager.Activities.Add(Activity);
 
             string stringFavorites = HttpContext.Session.GetString("Favorites");

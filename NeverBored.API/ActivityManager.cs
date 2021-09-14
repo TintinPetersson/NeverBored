@@ -19,5 +19,13 @@ namespace NeverBored.API
 
             return activity;
         }
+        public async Task<ActivityModel> SearchActivity(string key)
+        {
+            ActivityModel activity = new ActivityModel();
+
+            activity = await ActivityProcessor.SearchActivity(key);
+
+            return activity;
+        }
     }
 }

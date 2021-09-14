@@ -19,8 +19,22 @@
             </div>
             <button class="btn btn-light pt-2 mt-2" style="width:150px" onClick="window.location.reload();">Refresh</button>
             <form method="post">
+                <input hidden asp-for="@Model.Activity.Key" name="id" />
                 <input class="btn btn-light pt-2 mt-2" style="width: 150px" type="submit" value="Add" />
             </form>
         </div>
     </div>
+</div>
+
+<br />
+<br />
+
+<div class="col-4 text-light">
+    @if (NeverBored.API.ActivityManager.Activities != null)
+    {
+        @foreach (var activity in NeverBored.API.ActivityManager.Activities)
+        {
+            <p class="text-light">@activity.Activity</p>
+        }
+    }
 </div>

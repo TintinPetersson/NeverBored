@@ -28,5 +28,24 @@ namespace NeverBored.API
                 }
             }
         }
+
+        public static async Task<ActivityModel> SearchActivity(string key)
+        {
+            string url = ApiHelper.ApiClient.BaseAddress.ToString() + "?key=" + key;
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    ActivityModel activity = await response.Content.ReadAsAsync<ActivityModel>();
+
+                    return activity;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }
