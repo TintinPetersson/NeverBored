@@ -26,15 +26,21 @@
     </div>
 </div>
 
-<br />
-<br />
 
-<div class="col-4 text-light">
-    @if (NeverBored.API.ActivityManager.Activities != null)
+<div class="container mt-3 pt-3">
+    @if (Model.ActivityFavorties != null)
     {
-        @foreach (var activity in NeverBored.API.ActivityManager.Activities)
-        {
-            <p class="text-light">@activity.Activity</p>
-        }
+        <div class="row justify-content-center">
+            @foreach (var activity in Model.ActivityFavorties)
+            {
+                <div class="col-3">
+                    <p class="text-light">@activity.Activity</p>
+                    <form method="post">
+                        <input asp-page-handler="Delete" id="key" type="submit" value="Delete" asp-route-key="@activity.Key" />
+                    </form>
+                </div>
+            }
+        </div>
     }
 </div>
+

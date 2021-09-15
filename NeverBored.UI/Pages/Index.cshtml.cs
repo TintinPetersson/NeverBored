@@ -16,6 +16,7 @@ namespace NeverBored.UI.Pages
     {
         [BindProperty]
         public ActivityModel Activity { get; set; }
+        public List<ActivityModel> ActivityFavorties { get; set; }
         public async Task<IActionResult> OnGet()
         {
             //----Prepare and Get Cookies
@@ -24,7 +25,7 @@ namespace NeverBored.UI.Pages
 
             if (!String.IsNullOrEmpty(stringFavorites))
             {
-                ActivityManager.Activities = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
+                ActivityFavorties = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
             }
 
             //----Get Activity from API
@@ -33,6 +34,7 @@ namespace NeverBored.UI.Pages
 
             Activity = await activityManager.GetActivity();
 
+            ActivityManager.Activities.Add(Activity);
 
             return Page();
         }
@@ -41,27 +43,49 @@ namespace NeverBored.UI.Pages
             ActivityManager activityManager = new ActivityManager();
             Activity = await activityManager.SearchActivity(id);
 
-            ActivityManager.Activities.Add(Activity);
 
             string stringFavorites = HttpContext.Session.GetString("Favorites");
+            var favorites = new List<ActivityModel>();
 
             if (!String.IsNullOrEmpty(stringFavorites))
             {
-                ActivityManager.Activities = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
+                favorites = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
             }
+
+            favorites.Add(Activity);
 
             if (ModelState.IsValid)
             {
-                stringFavorites = JsonConvert.SerializeObject(ActivityManager.Activities);
+                stringFavorites = JsonConvert.SerializeObject(favorites);
 
                 HttpContext.Session.SetString("Favorites", stringFavorites);
 
-                return Redirect("/ShowFavorites");
+                return Redirect("/Index");
             }
             else
             {
                 return Redirect("/Index");
             }
+        }
+        public IActionResult OnPostDelete(string key)
+        {
+            string stringFavorites = HttpContext.Session.GetString("Favorites");
+
+            var favorites = new List<ActivityModel>();
+
+            if (!String.IsNullOrEmpty(stringFavorites))
+            {
+                favorites = JsonConvert.DeserializeObject<List<ActivityModel>>(stringFavorites);
+            }
+
+            var activityToRemove = favorites.First(c => c.Key == key);
+
+            favorites.Remove(activityToRemove);
+
+            stringFavorites = JsonConvert.SerializeObject(favorites);
+            HttpContext.Session.SetString("Favorites", stringFavorites);
+
+            return RedirectToPage("/Index");
         }
     }
 }

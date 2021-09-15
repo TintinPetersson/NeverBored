@@ -5,9 +5,9 @@
 <div class="container text-light">
     <div class="row justify-content-center text-light">
         <div class="col-4 text-light">
-            @if (NeverBored.API.ActivityManager.Activities != null)
+            @if (Model.FavoritesList != null)
             {
-                @foreach (var activity in NeverBored.API.ActivityManager.Activities)
+                @foreach (var activity in Model.FavoritesList)
                 {
                     <p class="text-light">@activity.Activity</p>
                 }

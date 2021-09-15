@@ -13,8 +13,13 @@ namespace NeverBored.UI.Pages
 {
     public class ShowFavoritesModel : PageModel
     {
+        public List<ActivityModel> FavoritesList { get; set; }
         public void OnGet()
         {
+            IndexModel index = new IndexModel();
+
+            FavoritesList = index.ActivityFavorties;
+
             string stringFavorties = HttpContext.Session.GetString("Favorites");
 
             if (!String.IsNullOrEmpty(stringFavorties))
